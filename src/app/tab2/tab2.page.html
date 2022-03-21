@@ -7,11 +7,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <ion-card>
+    <ion-card-header>
+      Rappels
+    </ion-card-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-card-content>
+      <form (ngSubmit)="createAlerte($event)">
+        <ion-input type="text" placeholder="Donner un titre..." [(ngModel)]="alert.titre" name="titre">Titre</ion-input>
+        <ion-input type="text" placeholder="Donner un contenu..." [(ngModel)]="alert.contenu" name="contenu">Contenu</ion-input>
+        <ion-input type="date" placeholder="Donner une date..." [(ngModel)]="alert.date" name="date">Date</ion-input>
+        <ion-input type="text" [(ngModel)]="alert.id" name="id" style="visibility: hidden;" [value]="id"></ion-input>
+        <ion-button type="submit">Créer l'alerte</ion-button>
+      </form>
+    </ion-card-content>
+
+    <ion-card-content *ngFor="let _alert of alerts">
+      <ion-text>
+        Numéro : {{ _alert.id }}<br>
+        Titre : {{ _alert.titre }}<br>
+        Contenu : {{ _alert.contenu }}<br>
+        Date : {{ _alert.date }}
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
